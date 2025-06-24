@@ -1,0 +1,48 @@
+import random
+
+def game(a):
+  lose=False
+  count=0
+  num1=random.randint(1,100)
+  while lose==False:
+    print('current score: '+str(count))
+    print(num1)
+    num2=random.randint(1,100)
+    while num1==num2:
+      num2=random.randint(1,100)
+    h_l=input('do you think the next number will be higher or lower than '+str(num1)+' (h/l): ')
+    while h_l.lower()!='h' and h_l.lower()!='l':
+      h_l=input('do you think the next number will be higher or lower than '+str(num1)+' (h/l): ')
+    if h_l.lower() == 'h' and num2<num1:
+      lose=True
+      print('Sorry the number is: '+str(num2)+' which is lower :(')
+    elif h_l.lower() == 'l' and num2>num1:
+      lose=True
+      print('Sorry the number is: '+str(num2)+' which is higher :(')
+    else:
+      count=count+1
+      num1=num2
+      print('the number is... '+str(num2))
+      print('\n')
+
+  if lose==True:
+    return count
+
+#main py
+count=0
+print('The numbers range from 1-100')
+highScore=game(count)
+print('\n\n')
+print('high score: '+str(highScore))
+again=input('do you want to play again? (y/n): ')
+print('\n\n\n\n\n')
+
+while again.lower()=='y':
+  currentScore=game(count)
+  if currentScore>highScore:
+    print('\n\nWell Done!!! You reached a new high score of: '+str(currentScore))
+    highScore=currentScore
+  print('\n\n')
+  print('high score: '+str(highScore))
+  again=input('do you want to play again? (y/n): ')
+  print('\n\n\n\n\n')
